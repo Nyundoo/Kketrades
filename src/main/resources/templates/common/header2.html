@@ -453,6 +453,9 @@ float: left;
         .rightm {
             width: 75%;
         }
+        .rightm1 {
+            width: 100%;
+        }
 
         /* Clear floats after the columns */
         .row:after {
@@ -752,7 +755,8 @@ margin-top: 7px;
                 </div>
 
                 <ul class="list-unstyled components">
-                    <p>Hello User</p>
+                    <p>Hello <span
+                        th:text="${user}? ${#strings.toUpperCase(user.username)} : 'User'"></span></p>
                     <li class="active">
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">User Profile</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">

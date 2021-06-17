@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<head th:replace="common/header2 :: common-header" />
+
+<body>
+    <div th:replace="common/header2 :: navbar" />
+
+    <div class="container">
+
+        <!-- <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-8">
+            <h2 class="section-headline">
+                <h2 class="section-headline">
+                    <span
+                        th:text="${user}? ${#strings.toUpperCase(user.username)} : 'All items'"></span>
+                </h2>
+            </h2>
+        </div>
+        
+    </div> -->
+
+        <div class="column leftm">
+            <h3><label for="category">Category</label></h3>
+            <div class="list-group" id="category">
+                <a th:href="@{/itemShelf(category='all')}" th:classappend="${activeAll}? 'active'"
+                    class="list-group-item">All</a>
+                <a th:href="@{/searchByCategory(category='Fasteners')}" th:classappend="${activeFasteners}? 'active'"
+                    class="list-group-item">Fasteners</a>
+                <a th:href="@{/searchByCategory(category='Building materials')}"
+                    th:classappend="${activeBuildingMaterials}? 'active'" class="list-group-item">Building materials</a>
+                <a th:href="@{/searchByCategory(category='Hand tools')}" th:classappend="${activeHandTools}? 'active'"
+                    class="list-group-item">Hand tools</a>
+                <a th:href="@{/searchByCategory(category='Power tools')}" th:classappend="${activePowerTools}? 'active'"
+                    class="list-group-item">Power tools</a>
+                <a th:href="@{/searchByCategory(category='Locks')}" th:classappend="${activeLocks}? 'active'"
+                    class="list-group-item">Locks</a>
+                <a th:href="@{/searchByCategory(category='Hinges')}" th:classappend="${activeHinges}? 'active'"
+                    class="list-group-item">Hinges</a>
+                <a th:href="@{/searchByCategory(category='Plumbing supplies')}"
+                    th:classappend="${activePlumbingSupplies}? 'active'" class="list-group-item">Plumbing supplies</a>
+                <a th:href="@{/searchByCategory(category='Electrical supplies')}"
+                    th:classappend="${activeElectricalSupplies}? 'active'" class="list-group-item">Electrical
+                    supplies</a>
+                <a th:href="@{/searchByCategory(category='Clean products')}"
+                    th:classappend="${activeCleanProducts}? 'active'" class="list-group-item">Clean products</a>
+                <a th:href="@{/searchByCategory(category='Tools utensils')}"
+                    th:classappend="${activeToolsUtensils}? 'active'" class="list-group-item">Tools utensils</a>
+                <a th:href="@{/searchByCategory(category='Lawn &amp; garden products')}"
+                    th:classappend="${activeLawnGardenProducts}? 'active'" class="list-group-item">Lawn &amp; garden
+                    products</a>
+
+            </div>
+        </div>
+<!-- <style>
+    .horizontal{
+    float: left;
+    border: 1px solid green;
+    text-align: left;
+    
+}
+
+.horizontal  *{
+
+    display: inline-block;
+    margin-left: 10px;
+
+    padding: 2px 2px 2px 2px;
+}
+
+</style> -->
+        
+        <div class="column rightm ">
+            <div th:if="${emptyList}">
+                <h5 style="font-style: italic;">Oops, no result is found. Try
+                    something else or try again later.</h5>
+            </div>
+
+            <table border="0" class="horizontal" id="itemList">
+                <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="item-item" data-th-each="item : ${itemList}">
+                        <td>
+                            <div th:if="${item != null}">
+                                <div class="row" style="margin-bottom: 50px;">
+                                    <div class="col-xs-3">
+                                        <a th:href="@{/itemDetail?id=}+${item.id}"><img
+                                                class="img-responsive shelf-item"
+                                                th:src="#{adminPath}+@{${item.mainImagePath}}" /></a>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <a th:href="@{/itemDetail?id=}+${item.id}">
+                                            <h4 th:text="${item.title}"></h4>
+                                        </a>
+                                        <a th:href="@{/itemDetail?id=}+${item.id}"></a><br />
+
+                                        <a th:href="@{/itemDetail?id=}+${item.id}"><span
+                                                style="font-size: x-large; color: #db3208;">Ksh.<span
+                                                    th:text="${#numbers.formatDecimal(item.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span></a>
+
+                                        <span style="text-decoration: line-through;">Ksh<span
+                                                th:text="${#numbers.formatDecimal(item.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</body>
+<div th:replace="common/header2 :: footer" />
+<div th:replace="common/header2 :: body-bottom-scripts" />
+
+
+ <script>
+ $(document).ready( function () {
+	    $('#itemList').DataTable();
+	} );
+    </script>
+
+
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>kke trades store</title>
+
+<style>
+  #map {
+    height: 500px;
+    width: 900px;
+  }
+
+</style>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  vertical-align: middle;
+}
+
+
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+</style>
+
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="/css/non-responsive.css" rel="stylesheet" />
+
+<!-- data table -->
+<link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet" />
+<link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet" />
+
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+
+<link rel="icon" href="/image/applie-touch-icon.png" />
+</head>
+
+<body>
+	<div th:fragment="navbar">
+		<div class="page-top"
+			style="width: 100%; height: 20px; background-color: #f46b42;"></div>
+		<!-- Static navbar -->
+		<nav class="navbar navbar-default navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/}">KKE TRADES STORE</a>
+				</div>
+				<div id="navbar">
+					<ul class="nav navbar-nav navbar-left">
+						<li class="dropdown"><a th:href="@{/itemShelf}"
+							class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-haspopup="true" aria-expanded="false">ITEMS <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a th:href="@{/itemShelf}">Browse the itemshelf</a></li>
+								<li><a th:href="@{/hours}">Store hours &#38; Directions</a></li>
+								<li><a th:href="@{/faq}">FAQ</a></li>
+
+							</ul></li>
+						<form class="navbar-form" th:action="@{/searchItem}" method="post">
+							<div class="form-group">
+								<input type="text" name="keyword" class="form-control"
+									placeholder="item title" />
+							</div>
+							<button type="submit" class="btn btn-default">Search</button>
+						</form>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a th:href="@{/shoppingCart/cart}">SHOPPING CART</a></li>
+						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">MY
+								ACCOUNT</a></li>
+						<li><a sec:authorize="isAuthenticated()"
+							th:href="@{/myProfile}">MY ACCOUNT</a></li>
+						<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">LOGOUT</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+			<!--/.container-fluid -->
+		</nav>
+	</div>
+
+	<div th:fragment="footer">
+		<br />
+		<br />
+		<footer>
+			<div class="row">
+				<div class="col-xs-3 footerleft">
+					<div class="logofooter">
+						<a th:href="@{/}"><img class="img-responsive"
+							src="/image/logo.jpg" style="width: 200px;" /></a>
+					</div>
+					<p>
+						KKE Trades item Store. <br />Serving our customers with the
+						best.
+					</p>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">CONTACT</h6>
+					<ul class="post">
+						<p>
+							<i class="fa fa-map-pin"></i>  Kombo Munyiri Road.<br /> Nairobi, KENYA
+							P.O Box 31002- 00600
+						</p>
+						<p>
+							<i class="fa fa-phone"></i> Phone (KEN) : +254710724880
+						</p>
+						<p>
+							<i class="fa fa-envelope"></i> E-mail : kings_tr@yahoo.com
+						</p>
+					</ul>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">LINKS</h6>
+					<ul class="footer-ul">
+						<li><a href="#"> Privacy Policy</a></li>
+						<li><a href="#"> Terms &#38; Conditions</a></li>
+						<li><a th:href="@{/faq}"> Frequently Ask Questions</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">STORE HOURS</h6>
+					<div class="post">
+						<p>Monday - Saturday: 9am - 11pm</p>
+						<p>Sunday: 10am - 10pm</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<div class="copyright">
+			<div class="col-md-6">
+				<p>© 2021 - All Rights Reserved</p>
+			</div>
+			<div class="col-md-6">
+				<ul class="bottom_ul">
+					<li><a href="#">About us</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a th:href="@{/faq}">Faq's</a></li>
+					<li><a href="#">Contact us</a></li>
+					<li><a th:href="@{/hours}">Site Map</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div th:fragment="body-bottom-scripts">
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+
+		<script th:src="@{/js/scripts.js}"></script>
+		
+		<script>
+		const change = src => {
+		    document.getElementById('main').src = src
+		}
+		</script>
+
+		<!-- data table -->
+		<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+		<script th:src="@{/js/dataTables.bootstrap.min.js}"></script>
+		
+		<script>
+		
+		//New map
+		let map;
+
+		function initMap() {
+		  map = new google.maps.Map(document.getElementById("map"), {
+		    center: { lat: -1.28333, lng: 36.81667 },
+		    zoom: 14,
+		  });
+		  
+		//Add marker
+			var marker = new google.maps.Marker({
+				position:{ lat: -1.283823, lng: 36.835160 },
+				map:map
+			});
+		
+		//Info
+		var infoWindow = new google.maps.InfoWindow({
+			content:'<h1>Kketrades</h1>'
+		});
+		
+		marker.addListener('click', function(){
+			infoWindow.open(map, marker);
+		});
+		}
+		
+		</script>
+		<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLT3AUHEmHd7tlkNhUwBIRy72rTyJndlU&callback=initMap">
+</script>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+   
+	</div>
+</body>
+</html>

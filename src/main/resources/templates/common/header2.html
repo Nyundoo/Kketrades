@@ -144,7 +144,6 @@ float: left;
             padding-right: 15px;
             padding-top: 20px;
             padding-bottom: 15px;
-            background-color: #eee;
         }
         
         .frontstate{
@@ -447,12 +446,16 @@ float: left;
         }
 
         .leftm {
-            width: 25%;
+            width: 35%;
         }
 
         .rightm {
-            width: 75%;
+            width: 45%;
         }
+        .leftn {
+            width: 20%;
+        } 
+
         .rightm1 {
             width: 100%;
         }
@@ -463,6 +466,12 @@ float: left;
             display: table;
             clear: both;
         }
+
+        tbody>tr>:nth-child(2){
+ color:red;
+ width:200px;
+ text-align:center;
+}
 
         /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 600px) {
@@ -483,13 +492,7 @@ float: left;
             padding: 10px;
         }
 
-        .leftn {
-            width: 60%;
-        }
-
-        .rightn {
-            width: 40%;
-        }
+        
 
         /* Clear floats after the columns */
         .row:after {
@@ -656,6 +659,56 @@ float: left;
     .openbtn:hover {
       background-color:#444;
     }
+
+
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (min-width: 601px) {
+    .newspaper {
+  width: 25%;
+  float:left;
+  min-height:30px;
+  margin-right: 25px;
+}
+
+.clear {
+  clear:both;
+}
+
+.cont {
+  margin: 15px 0;
+  padding: 5px;
+}
+
+.art{
+    border-top: outset; 
+    border-width: 3.5px;
+}
+
+
+
+.col-xs-3x{
+    width: 100%;
+    float: none;
+    position: relative;
+    min-height: 1px;
+    padding-left: 4px
+}
+
+.col-xs-9x{
+    width: 100%;
+    float: none;
+    position: relative;
+    min-height: 1px;
+    padding-left: 4px
+}
+
+.wid{
+    width: 362px;
+    height: 565px;
+}
+
+        }
     </style>
 
 
@@ -734,6 +787,54 @@ margin-top: 7px;
   .topnav input[type=text] {
     border: 1px solid #ccc;  
   }
+  
+
+}
+
+
+#pricetag2{
+    font-size: 1.4rem;
+}
+
+#pricetag{
+    font-size: x-large;
+}
+
+@media only screen and (max-width: 600px) {
+ #hfont{
+     font-size: 14px;
+     font-weight: 500;
+ }
+
+ #pricetag{
+    font-size: 1.8rem;
+ }
+
+ #pricetag2{
+    font-size: 1.0rem;
+ }  
+
+ .col-xs-9x {
+    width: 50%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.col-xs-3x {
+    width: 50%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-left: 4px
+}
+
+.row{
+    border-style: ridge; 
+    border-width: 0.5px;
+}
 }
 
 </style>

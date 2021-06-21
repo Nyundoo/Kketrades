@@ -16,7 +16,16 @@ public class ItemServiceImpl implements ItemService{
 	private ItemRepository itemRepository;
 	
 	public List<Item> findAll() {
-		return (List<Item>) itemRepository.findAll();
+		List<Item> itemList = (List<Item>) itemRepository.findAll();
+		List<Item> activeItemList = new ArrayList();
+		
+		for (Item item: itemList) {
+			if(item.isActive()) {
+				activeItemList.add(item);
+			}
+		}
+		
+		return activeItemList;
 	}
 	
 	public Item findOne(Long id) {

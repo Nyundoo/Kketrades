@@ -100,9 +100,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/itemShelf")
-	public String itemshelf(Model model) {
+	public String itemshelf(Model model, Principal principal) {
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		
 		List<Item> itemList = itemService.findAll();
 		model.addAttribute("itemList", itemList);
+		model.addAttribute("activeAll",true);
 		
 		return "itemShelf";
 	}

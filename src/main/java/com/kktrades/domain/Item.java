@@ -236,30 +236,30 @@ public class Item {
 
 	@Transient
 	public String getMainImagePath() {
-		if(id == null || mainImage == null) return null;
+		if(id == null) return null;
 		
-		return "/item-images/" + id + "/" + mainImage;
+		return "/item-images/item1/" + id +".jpg";
 	}
 	
 	@Transient
 	public String getExtraImagePath1() {
-		if(id == null || extraImage1 == null) return null;
+		if(id == null) return null;
 		
-		return "/item-images/" + id + "/" + extraImage1;
+		return "/item-images/item2/" + id +".jpg";
 	}
 	
 	@Transient
 	public String getExtraImagePath2() {
-		if(id == null || extraImage2 == null) return null;
+		if(id == null) return null;
 		
-		return "/item-images/" + id + "/" + extraImage2;
+		return "/item-images/item3/" + id +".jpg";
 	}
 	
 	@Transient
 	public String getExtraImagePath3() {
-		if(id == null || extraImage3 == null) return null;
+		if(id == null) return null;
 		
-		return "/item-images/" + id + "/" + extraImage3;
+		return "/item-images/item4/" + id +".jpg";
 	}
 	
 	

@@ -7,7 +7,6 @@
     <meta name="description" content="Online shop for hardaware items like Fasteners, Building materials, Hand tools, Power tools, Locks, Hinges, Plumbing supplies, Electrical supplies, Cleaning products, Tools utensils & garden products">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name=”robots” content=”noindex,nofollow”>
     <meta name="author" content="Nyundoo" />
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,13 +17,14 @@
     <!-- Our Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/style3.css}">
     <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}">
+   
     
   
     <!-- data table -->
     <link rel="preload" th:href="@{/css/jquery.dataTables.min.css}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" th:href="@{/css/dataTables.bootstrap.min.css}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
 body {
@@ -1112,12 +1112,12 @@ function myFunction() {
     </script>
 
     <!-- Jquery js -->
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script rel="preload" th:src="@{/js/jquery.min.js}"></script>
 
 <!-- Bootstrap js -->
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script rel="preload" th:src="@{/js/bootstrap.min.js}"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {

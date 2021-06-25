@@ -83,6 +83,12 @@ public class CheckoutController {
 	public String checkout(@RequestParam("id") Long cartId, 
 			@RequestParam(value = "missingRequiredField", required = false) boolean missingRequiredField, Model model,
 			Principal principal) {
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		
 		User user = userService.findByUsername(principal.getName());		
 		
 
@@ -162,6 +168,12 @@ public class CheckoutController {
 			@ModelAttribute("billingAddress") BillingAddress billingAddress, @ModelAttribute("payment") Payment payment,
 			@ModelAttribute("billingSameAsShipping") String billingSameAsShipping,
 			@ModelAttribute("shippingMethod") String shippingMethod, Principal principal, Model model) {
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		
 		ShoppingCart shoppingCart = userService.findByUsername(principal.getName()).getShoppingCart();
 
 		List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);

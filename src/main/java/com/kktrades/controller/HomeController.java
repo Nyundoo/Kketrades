@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kktrades.domain.CartItem;
 import com.kktrades.domain.Item;
 import com.kktrades.domain.Order;
+import com.kktrades.domain.ShoppingCart;
 import com.kktrades.domain.User;
 import com.kktrades.domain.UserBilling;
 import com.kktrades.domain.UserPayment;
@@ -79,7 +80,13 @@ public class HomeController {
 	private OrderService orderService;
 
 	@RequestMapping("/")
-	public String index() {
+	public String index(Model model, Principal principal) {
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		
 		return "index";
 	}
 
@@ -90,12 +97,24 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/hours")
-	public String hours() {
+	public String hours(Model model, Principal principal) {
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		
 		return "hours";
 	}
 	
 	@RequestMapping("/faq")
-	public String faq() {
+	public String faq(Model model, Principal principal) {
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		
 		return "faq";
 	}
 	

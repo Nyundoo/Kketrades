@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kktrades.domain.CartItem;
 import com.kktrades.domain.Item;
 import com.kktrades.domain.Order;
-import com.kktrades.domain.ShoppingCart;
 import com.kktrades.domain.User;
 import com.kktrades.domain.UserBilling;
 import com.kktrades.domain.UserPayment;
